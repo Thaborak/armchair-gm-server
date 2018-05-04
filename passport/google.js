@@ -10,7 +10,7 @@ const User = require('../models/user');
 const googleStrategy = new GoogleStrategy({
   clientID: '19941803289-tact0somebrktc2kaeumoo7httk7scl6.apps.googleusercontent.com',
   clientSecret: GOOGLE_SECRET,
-  callbackURL: 'http://localhost:8080/api/auth/google/callback'
+  callbackURL: 'https://armchair-gm.herokuapp.com/api/auth/google/callback'
 },
 function (accessToken, refreshToken, profile, done) {
   User.findOne({ googleID: profile.id }, function (err, user) {

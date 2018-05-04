@@ -22,7 +22,7 @@ router.get('/auth/google/callback',
   }),
   function (req, res) {
     res.cookie('accessToken', req.user.accessToken, { expires: 0 });
-    res.redirect('http://localhost:3000/dashboard');
+    res.redirect('https://armchair-gm.netlify.com/dashboard');
   }
 );
 
