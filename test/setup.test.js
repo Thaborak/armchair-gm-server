@@ -17,15 +17,15 @@ process.stdout.write('\x1Bc\n');
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-before(function() {
-  return dbConnect(TEST_DATABASE_URL);
-});
-
-after(function() {
-  return dbDisconnect();
-});
-
 describe('Mocha and Chai', function() {
+  before(function () {
+    return dbConnect(TEST_DATABASE_URL);
+  });
+
+  after(function () {
+    return dbDisconnect();
+  });
+
   it('should be properly setup', function() {
     expect(true).to.be.true;
   });
