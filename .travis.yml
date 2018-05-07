@@ -4,8 +4,15 @@ deploy:
   provider: heroku
   api_key:
     secure: q/jS6TeeX5izDUhlDP99Xr9vvrLI//HiiLlqyWXSKUbe6w/73x3vNhtdIqhO6dwwFWmcySHpDyiGcBeiRRrnVvdFmrinQDpJteQ7sgct2c1NoUT9XgySi4nZeN2LEri8EmmmmYpIV+F9LMBEKdH1frBSvUBi6VW9Lw9i4aZmMnw/5XeZGVns3xPQxOX8Xlr+LKdn5PdJOY548KzBThHd3C1XkoYYGu9eZzQGe8uNkWmk9sibbSd5/Or2a7R73jPx8qz49+6gZo5Caosfa5b0c6J84VurpE4HrleurNd8RAZnxgOFSBtvQSbp5mmWdScHUEy7u5UU2S9sGpsxBRWqrZuXAga9qzwoLf5UReKUUk+pKLJ/ZqLScvSUJbd3acZbjv3vKFYa+iHNiKS/3sIennh4oHeqpiYjATwr8106qrDEdASAF9JUIzcecZzFb3FCPaAgE4VnSFCEoj7CaKnd0vj2m2DwyKQZkXlkKwCLJ6tBV5JO7DmyCc9CvVHCOaaUARBXXmPEhMQ2FBkjhtQHr/qEuSm7lDjvXIc9lYeLFK0mqE5kO3OF14nJBQA5aKImbMjiMhWg9VT28w7iQhgbl7iSmYrim+Mwg5MUps2P+qA6DcQZKvX7/iPlHhWyRIIAR0o1r/Xh4tL8r2K+/lD6hLUikhPyWEj0GfRHLEC+IME=
-  app:
-     production: armchair-gm
-     staging: feature-save-team-armchair-gm
+  app: armchair-gm
   on:
     repo: Thaborak/armchair-gm-server
+    branch: master
+
+  provider: heroku
+  api_key:
+    secure: q/jS6TeeX5izDUhlDP99Xr9vvrLI//HiiLlqyWXSKUbe6w/73x3vNhtdIqhO6dwwFWmcySHpDyiGcBeiRRrnVvdFmrinQDpJteQ7sgct2c1NoUT9XgySi4nZeN2LEri8EmmmmYpIV+F9LMBEKdH1frBSvUBi6VW9Lw9i4aZmMnw/5XeZGVns3xPQxOX8Xlr+LKdn5PdJOY548KzBThHd3C1XkoYYGu9eZzQGe8uNkWmk9sibbSd5/Or2a7R73jPx8qz49+6gZo5Caosfa5b0c6J84VurpE4HrleurNd8RAZnxgOFSBtvQSbp5mmWdScHUEy7u5UU2S9sGpsxBRWqrZuXAga9qzwoLf5UReKUUk+pKLJ/ZqLScvSUJbd3acZbjv3vKFYa+iHNiKS/3sIennh4oHeqpiYjATwr8106qrDEdASAF9JUIzcecZzFb3FCPaAgE4VnSFCEoj7CaKnd0vj2m2DwyKQZkXlkKwCLJ6tBV5JO7DmyCc9CvVHCOaaUARBXXmPEhMQ2FBkjhtQHr/qEuSm7lDjvXIc9lYeLFK0mqE5kO3OF14nJBQA5aKImbMjiMhWg9VT28w7iQhgbl7iSmYrim+Mwg5MUps2P+qA6DcQZKvX7/iPlHhWyRIIAR0o1r/Xh4tL8r2K+/lD6hLUikhPyWEj0GfRHLEC+IME=
+  app: staging-armchair-gm
+  on:
+    repo: Thaborak/armchair-gm-server
+    branch: feature/save-team

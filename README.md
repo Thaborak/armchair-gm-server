@@ -1,45 +1,41 @@
-# Thinkful Backend Template
+# ArmChair GM 
 
-A template for developing and deploying Node.js apps.
+![Build Status](https://travis-ci.org/Thaborak/armchair-gm-server.svg?branch=master)
 
-## Getting started
+Frontend-Repo: https://github.com/Thaborak/armchair-gm-client
+----
 
-### Setting up a project
+### [Live App]('https://armchair-gm.netlify.com/')
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/Thinkful-Ed/backend-template YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left unchecked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
 
-### Working on the project
+> This app will allow you to draft your next fantasy football team alongside your live draft to have realtime player rankings from FantasyPro's Expert Consensus.
+----
+### Screenshot
+![Screenshot](screenshot.png)
 
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm start`
-    * Starts a server running at http://localhost:8080
-    * Automatically restarts when any of your files change
+----
+### Technology
+#### ArmChair-GM is built using the MERN stack. It utilizes React and Redux on the front end and Mongo, Express, and Node.js on back end.
+* **ReactJS**
+* **Redux**
+* **React Router**
+* **NodeJS**
+* **MongoDB**
+* **Mongoose**
+* **Express**
+* **Passport**
 
-## Databases
+----
+### App Features
+* Google Authentication/Login
+* Search through expert curated player rankings sorting by best overall & best by position as draft picks are made
 
-By default, the template is configured to connect to a MongoDB database using Mongoose.  It can be changed to connect to a PostgreSQL database using Knex by replacing any imports of `db-mongoose.js` with imports of `db-knex.js`, and uncommenting the Postgres `DATABASE_URL` lines in `config.js`.
+----
 
-## Deployment
+### TODOS
+* User Drafted Team is Saved and stored on mongodb
+* Rookie players are tracked as sleepers
+* After draft grade calculated by weighted position/potential points
+* User Team Dashboard displaying team and suggested positions 
 
-Requires the [Heroku CLI client](https://devcenter.heroku.com/articles/heroku-command-line).
 
-### Setting up the project on Heroku
-
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Create the Heroku app: `heroku create PROJECT_NAME`
-
-* If your backend connects to a database, you need to configure the database URL:
-    * For a MongoDB database: `heroku config:set DATABASE_URL=mongodb://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
-    * For a PostgreSQL database: `heroku config:set DATABASE_URL=postgresql://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`
-
-* If you are creating a full-stack app, you need to configure the client origin: `heroku config:set CLIENT_ORIGIN=https://www.YOUR_DEPLOYED_CLIENT.com`
-
-### Deploying to Heroku
-
-* Push your code to Heroku: `git push heroku master`
