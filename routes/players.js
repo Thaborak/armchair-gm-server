@@ -13,7 +13,7 @@ const router = express.Router();
 router.put('/user/:googleID', passport.authenticate(['bearer', 'anonymous'], { session: false }),
   function (req, res) {
     User.findOneAndUpdate({ 'googleID': req.params.googleID },
-      { $addToSet: { 'userTeam': req.body.userTeam } },
+      { $addToSet: { 'team': req.body.team } },
       { new: true },
       function (err, user) {
         if (err) {
