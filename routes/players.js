@@ -9,6 +9,21 @@ const router = express.Router();
 
 
 
+// GET: fetch userTeam
+router.get('/user/:googleID', passport.authenticate(['bearer', 'anonymous'], { session: false }),
+  function (req, res) {
+    User.findOneAndUpdate({ 'googleID': req.params.googleID },
+      { $addToSet: { 'team': req.body.team } },
+      { new: true },
+      function (err, user) {
+        if (err) {
+          return res.send(err);
+        }
+        return res.json(user);
+      });
+  });
+
+
 // PUT: Add to userTeam (avoids duplicates)
 router.put('/user/:googleID', passport.authenticate(['bearer', 'anonymous'], { session: false }),
   function (req, res) {
@@ -39,7 +54,7 @@ router.put('/user/team/:player', passport.authenticate(['bearer', 'anonymous'], 
       });
   });
 
-router.get('/rankings', (req, res) => {
+router.get('/rankings', (res) => {
   res.json({rankings});
 });
 

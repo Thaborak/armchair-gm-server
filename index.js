@@ -97,7 +97,7 @@ app.get('/logout', function (req, res) {
 
 // GET: Retrieves entire user object
 app.get('/user', passport.authenticate(['bearer'], { session: false }), function (req, res) {
-  var googleID = req.user.googleID;
+  const googleID = req.user.googleID;
   User.findOne({ googleID: googleID }, function (err, user) {
     if (err) {
       res.json({ anonymous: true });
@@ -106,6 +106,21 @@ app.get('/user', passport.authenticate(['bearer'], { session: false }), function
     }
   });
 });
+
+
+// GET: fetch userTeam
+app.get('/user/team', passport.authenticate(['bearer'], { session: false }),
+  function (req, res) {
+    User.team.find({ team: 'Name' }, 
+      function (err, team) {
+        if (err) {
+          res.send(err);
+        }
+        res.json({team});
+      });
+  });
+
+
 
 // PUT: Add to userTeam (avoids duplicates)
 app.put('/user/:googleID', passport.authenticate(['bearer', 'anonymous'], { session: false }),
