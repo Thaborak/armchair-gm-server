@@ -121,15 +121,31 @@ app.get('/user/team', passport.authenticate(['bearer'], { session: false }),
   });
 
 
+// POST: Add to userTeam (avoids duplicates)
+app.post('/user/:googleID', passport.authenticate(['bearer'], { session: false }),
+  function (req, res) {
+    User.findOneAndUpdate({ 'googleID': req.params.googleID },
+      {
+        $addToSet: { 'team': req.body.team }
+      },
+      {new: true},
+      function (err, user) {
+        if (err) {
+          return res.send(err);
+        }
+        return res.json(user);
+      });
+  });
+
 
 // PUT: Add to userTeam (avoids duplicates)
-app.put('/user/:googleID', passport.authenticate(['bearer', 'anonymous'], { session: false }),
+app.put('/user/:googleID', passport.authenticate(['bearer'], { session: false }),
   function (req, res) {
     User.findOneAndUpdate({ 'googleID': req.params.googleID },
       {
         $addToSet: {'team':req.body.team}      
       },
-      { new: true },
+      // { new: true },
       function (err, user) {
         if (err) {
           return res.send(err);
@@ -139,7 +155,7 @@ app.put('/user/:googleID', passport.authenticate(['bearer', 'anonymous'], { sess
   });
 
 // PUT: Remove from userTeam
-app.put('/user/team/:player', passport.authenticate(['bearer', 'anonymous'], { session: false }),
+app.put('/user/team/:player', passport.authenticate(['bearer'], { session: false }),
   function (req, res) {
     const playerName = parseInt(req.params.player);
     const googleID = req.body.googleID;
