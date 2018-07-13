@@ -3,14 +3,14 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
 const { GOOGLE_SECRET } = require('../config');
-const database = {};
 const User = require('../models/user');
-
+const { API_BASE_URL } = require('../config.js');
 
 const googleStrategy = new GoogleStrategy({
   clientID: '19941803289-tact0somebrktc2kaeumoo7httk7scl6.apps.googleusercontent.com',
   clientSecret: GOOGLE_SECRET,
-  callbackURL: 'https://armchair-gm.herokuapp.com/api/auth/google/callback'
+  callbackURL: `${API_BASE_URL}/api/auth/google/callback`
+
 },
 function (accessToken, refreshToken, profile, done) {
   User.findOne({ googleID: profile.id }, function (err, user) {
@@ -18,7 +18,7 @@ function (accessToken, refreshToken, profile, done) {
       User.create({
         googleID: profile.id,
         accessToken: accessToken,
-        players: [],
+        team: [],
         fullName: profile.displayName
       }, function (err, users) {
         return done(err, users);

@@ -5,30 +5,35 @@ const express = require('express');
 const User = require('../models/user');
 const passport = require('passport');
 
+const googleStrategy = require('../passport/google');
+const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session');
+const { API_BASE_URL } = require('../config.js');
+
+
+
 const router = express.Router();
 
-
-
 /* =========== Google OAuth2.0 ============ */
-router.get('/auth/google',
+router.use(cookieParser());
+
+router.use(cookieSession({
+  name: 'session',
+  keys: ['123'],
+}));
+
+router.post('/auth/google',
   passport.authenticate('google', {
     scope: ['profile']
   }));
 
-router.get('/auth/google/callback',
-  passport.authenticate('google', {
-    failureRedirect: '/',
-    session: false
-  }),
+router.post('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/', session: false } ),
   function (req, res) {
-    res.cookie('accessToken', req.user.accessToken, { expires: 0 });
-    res.redirect('https://armchair-gm.netlify.com/dashboard');
+    req.session.token = req.user.token;  
+    res.redirect(`${API_BASE_URL}/dashboard`);
   }
 );
-
-// Anonymous Strategy
-// passport.use(new AnonymousStrategy());
-
 
 // GET: Logs user out, ends their session and redirects then to the login endpoint
 router.get('/logout', function (req, res) {
@@ -37,16 +42,15 @@ router.get('/logout', function (req, res) {
 });
 
 // GET: Retrieves entire user object
-router.get('/user', passport.authenticate(['bearer'], { session: false }), function (req, res) {
+router.get('/user', function (req, res) {
+  req.cookie('googleID', req.user.googleID, { expires: 0 });
   const googleID = req.user.googleID;
   User.findOne({ googleID: googleID }, function (err, user) {
-    if (err) {
-      res.json({ anonymous: true });
-    } else {
-      res.json(user);
-    }
+    res.json({user});
   });
 });
+
+
 
 
 module.exports = router;

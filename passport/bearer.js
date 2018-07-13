@@ -1,7 +1,7 @@
 'use strict';
 const BearerStrategy = require('passport-http-bearer').Strategy;
-const database = {};
 const User = require('../models/user');
+
 
 const bearerStrategy =(new BearerStrategy(
   function (token, done) {
