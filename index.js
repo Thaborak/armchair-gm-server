@@ -63,7 +63,7 @@ app.get('/auth/google/callback',
     session: false
   }),
   function (req, res) {
-    res.cookie('accessToken', req.user.accessToken, { expires: 0 });
+    res.cookie('accessToken', req.user.accessToken);
     res.redirect(`${CLIENT_ORIGIN}/dashboard`);
   }
 );
